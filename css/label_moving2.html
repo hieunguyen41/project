@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>label_moving2</title>
+	<style>
+		*,*:before, *:after {box-sizing: border-box;}
+		.demo .k {width: 200px; margin-top: 40px; position: relative;}
+		.demo .k input {padding: 10px; background-color: transparent; border: solid 1px #666; }
+		.demo .k label {background-color: #fff; color: #666; position: absolute; left: 10px; top: 50%;
+						 transform: translate(0,-50%); transition: top 0.3s; z-index: -1;}
+		.demo .k .active + label {top: 0; z-index: 1;}
+	</style>
+</head>
+<body>
+	<form action="" class="demo">
+		<div class="k">
+			<input type="text">
+			<label for="">Email or phone</label>
+		</div>
+	</form>
+	<script>
+		let o_nhap = document.querySelectorAll(`.demo .k input`);
+
+		const bamVao = (e)=> {
+			e.target.classList.add(`active`);
+		}
+		const bamRa = (e)=> {
+			let tmp = e.target.value;
+			if (tmp ===``) e.target.classList.remove(`active`);
+		}
+		o_nhap.forEach(h => h.addEventListener(`focus`,bamVao));
+		o_nhap.forEach(h => h.addEventListener(`blur`,bamRa));
+		
+	</script>
+</body>
+</html>
